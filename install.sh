@@ -115,6 +115,7 @@ echo "--- Installing TPM ---"
 if [[ ! -d "$HOME/.tmux/plugins/tpm" ]]; then
     git clone https://github.com/tmux-plugins/tpm "$HOME/.tmux/plugins/tpm"
 fi
+~/.tmux/plugins/tpm/bin/install_plugins
 
 # --- Phase 10: Secrets reminder ---
 if [[ ! -f "$HOME/.zsh/secrets.zsh" ]]; then
