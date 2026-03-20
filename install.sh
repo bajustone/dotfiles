@@ -16,10 +16,10 @@ if [[ "$OS" == "Darwin" ]]; then
         /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
         eval "$(/opt/homebrew/bin/brew shellenv)"
     fi
-    brew install stow git zsh tmux zsh-syntax-highlighting lazygit
+    brew install stow git zsh tmux zsh-syntax-highlighting lazygit jq
 elif [[ "$OS" == "Linux" ]]; then
     sudo apt update
-    sudo apt install -y stow git zsh tmux zsh-syntax-highlighting curl build-essential
+    sudo apt install -y stow git zsh tmux zsh-syntax-highlighting curl build-essential jq
     # lazygit isn't in default Ubuntu repos — install from GitHub release
     if ! command -v lazygit &>/dev/null; then
         LAZYGIT_VERSION=$(curl -s "https://api.github.com/repos/jesseduffield/lazygit/releases/latest" | grep -Po '"tag_name": "v\K[^"]*')
