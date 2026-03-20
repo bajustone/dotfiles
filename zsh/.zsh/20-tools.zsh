@@ -1,5 +1,8 @@
 # Mise — activates all mise-managed tools (node, python, fzf, zoxide, ripgrep, etc.)
-[[ -x "$HOME/.local/bin/mise" ]] && eval "$(~/.local/bin/mise activate zsh)"
+if [[ -x "$HOME/.local/bin/mise" ]]; then
+  eval "$(~/.local/bin/mise activate zsh)"
+  eval "$(~/.local/bin/mise hook-env -s zsh 2>/dev/null)"
+fi
 
 # Zoxide
 if command -v zoxide &>/dev/null; then

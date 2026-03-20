@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env bash
 #
 ZOXIDE_RESULT=$(zoxide query -l | fzf --reverse )
 
