@@ -16,10 +16,10 @@ if [[ "$OS" == "Darwin" ]]; then
         /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
         eval "$(/opt/homebrew/bin/brew shellenv)"
     fi
-    brew install stow git zsh tmux zsh-syntax-highlighting
+    brew install stow git zsh tmux zsh-syntax-highlighting lazygit
 elif [[ "$OS" == "Linux" ]]; then
     sudo apt update
-    sudo apt install -y stow git zsh tmux zsh-syntax-highlighting curl build-essential
+    sudo apt install -y stow git zsh tmux zsh-syntax-highlighting curl build-essential lazygit
 fi
 
 # --- Phase 2: Install mise ---
@@ -65,6 +65,19 @@ echo "--- Installing Powerlevel10k ---"
 P10K_DIR="${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k"
 if [[ ! -d "$P10K_DIR" ]]; then
     git clone --depth=1 https://github.com/romkatv/powerlevel10k.git "$P10K_DIR"
+fi
+
+# --- Phase 6b: Nerd Font (MesloLGS NF, recommended for Powerlevel10k) ---
+echo "--- Installing Nerd Font ---"
+FONT_DIR="$HOME/.local/share/fonts"
+mkdir -p "$FONT_DIR"
+if ! ls "$FONT_DIR"/MesloLGS* &>/dev/null; then
+    cd "$FONT_DIR"
+    curl -fLO "https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20Regular.ttf"
+    curl -fLO "https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20Bold.ttf"
+    curl -fLO "https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20Italic.ttf"
+    curl -fLO "https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20Bold%20Italic.ttf"
+    fc-cache -f "$FONT_DIR"
 fi
 
 # --- Phase 7: Zsh plugins ---
