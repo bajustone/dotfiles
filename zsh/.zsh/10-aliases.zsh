@@ -1,5 +1,4 @@
 # Aliases
-alias cd="z"
 alias vi="nvim"
 alias vim="nvim"
 alias ls="eza"

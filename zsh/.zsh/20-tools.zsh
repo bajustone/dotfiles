@@ -1,12 +1,16 @@
 # Mise — activates all mise-managed tools (node, python, fzf, zoxide, ripgrep, etc.)
-eval "$(~/.local/bin/mise activate zsh)"
+[[ -x "$HOME/.local/bin/mise" ]] && eval "$(~/.local/bin/mise activate zsh)"
 
 # Zoxide
-eval "$(zoxide init zsh)"
+if command -v zoxide &>/dev/null; then
+  eval "$(zoxide init zsh)"
+  alias cd="z"
+fi
 
 # fzf key bindings and fuzzy completion
-source <(fzf --zsh)
+command -v fzf &>/dev/null && source <(fzf --zsh)
 
 # Zsh plugins
-source "$HOME/.zsh/zsh-autosuggestions/zsh-autosuggestions.plugin.zsh"
+[[ -f "$HOME/.zsh/zsh-autosuggestions/zsh-autosuggestions.plugin.zsh" ]] && \
+  source "$HOME/.zsh/zsh-autosuggestions/zsh-autosuggestions.plugin.zsh"
 # source "$HOME/.zsh/zsh-autocomplete/zsh-autocomplete.plugin.zsh"
