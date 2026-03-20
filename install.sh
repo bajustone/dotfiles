@@ -19,7 +19,17 @@ if [[ "$OS" == "Darwin" ]]; then
     brew install stow git zsh tmux zsh-syntax-highlighting lazygit
 elif [[ "$OS" == "Linux" ]]; then
     sudo apt update
-    sudo apt install -y stow git zsh tmux zsh-syntax-highlighting curl build-essential lazygit
+    sudo apt install -y stow git zsh tmux zsh-syntax-highlighting curl build-essential
+    # lazygit isn't in default Ubuntu repos — install from GitHub release
+    if ! command -v lazygit &>/dev/null; then
+        LAZYGIT_VERSION=$(curl -s "https://api.github.com/repos/jesseduffield/lazygit/releases/latest" | grep -Po '"tag_name": "v\K[^"]*')
+        LAZYGIT_ARCH=$(dpkg --print-architecture)
+        [[ "$LAZYGIT_ARCH" == "amd64" ]] && LAZYGIT_ARCH="x86_64"
+        curl -Lo lazygit.tar.gz "https://github.com/jesseduffield/lazygit/releases/latest/download/lazygit_${LAZYGIT_VERSION}_Linux_${LAZYGIT_ARCH}.tar.gz"
+        tar xf lazygit.tar.gz lazygit
+        sudo install lazygit /usr/local/bin
+        rm lazygit lazygit.tar.gz
+    fi
 fi
 
 # --- Phase 2: Install mise ---
