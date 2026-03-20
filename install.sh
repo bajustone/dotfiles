@@ -48,6 +48,12 @@ echo "--- Installing dev tools via mise ---"
 stow -v mise
 mise install
 
+# --- Phase 4b: zoxide (mise github backend broken on Linux, install via official script) ---
+if ! command -v zoxide &>/dev/null; then
+    echo "--- Installing zoxide ---"
+    curl -sSfL https://raw.githubusercontent.com/ajeetdsouza/zoxide/main/install.sh | sh
+fi
+
 # --- Phase 5: Oh My Zsh ---
 echo "--- Installing Oh My Zsh ---"
 if [[ ! -d "$HOME/.oh-my-zsh" ]]; then

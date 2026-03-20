@@ -9,7 +9,6 @@ java = "openjdk-17"
 # CLI tools (cross-platform via GitHub releases)
 "github:neovim/neovim" = "latest"
 "github:junegunn/fzf" = "latest"
-"github:ajeetdsouza/zoxide" = "latest"
 "github:BurntSushi/ripgrep" = "latest"
 "github:sharkdp/fd" = "latest"
 "github:sharkdp/bat" = "latest"
