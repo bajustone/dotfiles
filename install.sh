@@ -88,14 +88,14 @@ backup_if_exists "$HOME/.zshrc"
 backup_if_exists "$HOME/.p10k.zsh"
 backup_if_exists "$HOME/.tmux.conf"
 backup_if_exists "$HOME/.config/nvim"
-backup_if_exists "$HOME/.config/tmux/tmux.reset.conf"
-backup_if_exists "$HOME/.config/tmux/scripts/cal.sh"
+backup_if_exists "$HOME/.config/tmux"
 
 cd "$DOTFILES"
-stow -v zsh
-stow -v tmux
-stow -v nvim
-stow -v scripts
+stow -R zsh
+stow -R tmux
+stow -R nvim
+stow -R scripts
+stow -R mise
 
 # --- Phase 9: TPM ---
 echo "--- Installing TPM ---"
