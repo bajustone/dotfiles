@@ -3,7 +3,7 @@
 node = "lts"
 python = "3.12"
 ruby = "3.3"
-terraform = "latest"
+bun = "latest"
 java = "openjdk-17"
 
 # CLI tools (cross-platform via GitHub releases)
@@ -13,6 +13,7 @@ java = "openjdk-17"
 "github:BurntSushi/ripgrep" = "latest"
 "github:sharkdp/fd" = "latest"
 "github:sharkdp/bat" = "latest"
+"github:eza-community/eza" = "latest"
 
 [settings]
 experimental = true

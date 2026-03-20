@@ -12,3 +12,6 @@ done
 
 # Source local secrets (not in git)
 [[ -f "$HOME/.zsh/secrets.zsh" ]] && source "$HOME/.zsh/secrets.zsh"
+
+# Fix virgl/Parallels GPU compatibility (GL_EXT_shader_texture_lod unsupported)
+# export LIBGL_ALWAYS_SOFTWARE=1
