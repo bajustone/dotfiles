@@ -29,6 +29,12 @@ if ! command -v mise &>/dev/null; then
 fi
 export PATH="$HOME/.local/bin:$PATH"
 
+# --- Phase 2b: Install uv ---
+echo "--- Installing uv ---"
+if ! command -v uv &>/dev/null; then
+    curl -LsSf https://astral.sh/uv/install.sh | sh
+fi
+
 # --- Phase 3: Clone dotfiles ---
 echo "--- Setting up dotfiles ---"
 if [[ ! -d "$DOTFILES/.git" ]]; then
