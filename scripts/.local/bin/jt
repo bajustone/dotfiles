@@ -1,0 +1,35 @@
+#!/bin/sh
+# Store pwd in a variable
+ZOXIDE_RESULT=$(zoxide query $1)
+
+# if empty exit
+if [ -z "$ZOXIDE_RESULT" ]; then
+	exit 0
+fi
+
+# Get directory name
+DIR=$(basename $ZOXIDE_RESULT)
+
+# Lookup tmux session name
+TMUX_SESSION=$(tmux list-sessions | grep $DIR | awk '{print $1}')
+TMUX_SESSION=${TMUX_SESSION//:/} echo "$TMUX_SESSION"
+#
+if [ -z "$TMUX" ]; then
+	echo "is not tmux"
+	if [ -z "$TMUX_SESSION" ]; then
+		cd $ZOXIDE_RESULT
+		tmux new-session -s $DIR
+	else
+		tmux attach -t $TMUX_SESSION
+	fi
+else
+	if [ -z "$TMUX_SESSION" ]; then
+		cd $ZOXIDE_RESULT
+		tmux new-session -d -s $DIR
+		tmux switch-client -t  $DIR
+	else
+		tmux switch-client -t  $TMUX_SESSION
+	fi
+
+fi
+

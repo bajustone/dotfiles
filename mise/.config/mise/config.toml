@@ -1,0 +1,18 @@
+[tools]
+# Languages
+node = "lts"
+python = "3.12"
+ruby = "3.3"
+terraform = "latest"
+java = "openjdk-17"
+
+# CLI tools (cross-platform via GitHub releases)
+"github:neovim/neovim" = "latest"
+"github:junegunn/fzf" = "latest"
+"github:ajeetdsouza/zoxide" = "latest"
+"github:BurntSushi/ripgrep" = "latest"
+"github:sharkdp/fd" = "latest"
+"github:sharkdp/bat" = "latest"
+
+[settings]
+experimental = true
